@@ -1,0 +1,2043 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="artifact-type" content="narrative">
+  <meta name="design-style" content="sticker">
+  <title>It's Not a 'Brave Choice'. It's Fun. — A Visual Colour Diary</title>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      color-scheme: light;
+
+      /* Page and surfaces (Sticker style base) */
+      --background: #fef7ff;
+      --surface-container-low: #ffffff;
+      --surface-container: #f8eef8;
+      --surface-container-high: #f2e8f2;
+
+      /* Ink */
+      --on-surface: #2e1a28;
+      --on-surface-variant: #604868;
+
+      /* Rules */
+      --outline: #907898;
+      --outline-variant: #dcc8e0;
+
+      /* Accents */
+      --primary: #c2207f;
+      --on-primary: #ffffff;
+      --primary-container: #f080c0;
+      --on-primary-container: #2e1a28;
+      --secondary: #7c52aa;
+      --on-secondary: #ffffff;
+      --tertiary: #0096cc;
+      --error: #c53030;
+      --on-error: #ffffff;
+
+      /* Data series */
+      --data-1: #c2207f;
+      --data-2: #7c52aa;
+      --data-3: #0096cc;
+      --data-4: #d96a00;
+      --data-context: #c8b8d0;
+
+      /* Fonts */
+      --font-headline: 'DM Sans', sans-serif;
+      --font-body: 'DM Sans', sans-serif;
+      --font-label: 'DM Sans', sans-serif;
+
+      /* Shape */
+      --rounded: 1rem;
+      --rounded-lg: 2rem;
+      --rounded-full: 9999px;
+
+      /* Style effects */
+      --shadow-pink: 0 4px 16px rgb(224 64 160 / 0.2);
+      --shadow-pink-deep: 0 10px 28px rgb(224 64 160 / 0.32);
+      --shadow-grape: 0 4px 16px rgb(124 82 170 / 0.2);
+      --shadow-sky: 0 4px 16px rgb(0 150 204 / 0.2);
+      --shadow-tangerine: 0 4px 16px rgb(217 106 0 / 0.18);
+      --pop-scale: scale(1.03);
+      --lift: translateY(-4px);
+      --ease-bounce: cubic-bezier(0.34, 1.56, 0.64, 1);
+
+      /* Source collage pink & rainbow palette */
+      --rainbow-pink: #ff5ca8;
+      --rainbow-blush: #ff9fd0;
+      --rainbow-red: #ef3e5b;
+      --rainbow-orange: #ff8c24;
+      --rainbow-yellow: #ffd426;
+      --rainbow-mint: #2ec486;
+      --rainbow-sky: #1cb0f6;
+      --rainbow-cobalt: #2962ff;
+      --rainbow-violet: #8b5cf6;
+      --cream-frosting: #fff9f2;
+      --cocoa-ink: #4a2a38;
+
+      /* Muted adulthood comparison palette */
+      --greige-bg: #ebe6df;
+      --greige-card: #f5f2ed;
+      --greige-muted: #9a9288;
+      --greige-ink: #57514b;
+
+      /* Shared foundation tokens */
+      --positive: #15803d;
+      --warning: #b45309;
+      --focus: #c2207f;
+
+      /* Type scale (Narrative) */
+      --display-size: clamp(2.5rem, 1.35rem + 4vw, 4.35rem);
+      --headline-size: clamp(1.7rem, 1.15rem + 2vw, 2.45rem);
+      --subhead-size: clamp(1.2rem, 1.05rem + 0.5vw, 1.45rem);
+      --body-size: clamp(1.0625rem, 1rem + 0.25vw, 1.15rem);
+      --label-size: clamp(0.75rem, 0.72rem + 0.12vw, 0.8125rem);
+
+      /* Spacing scale */
+      --space-xs: 0.25rem;
+      --space-sm: 0.5rem;
+      --space-md: 1rem;
+      --space-lg: 1.5rem;
+      --space-xl: 2.5rem;
+      --space-2xl: 4rem;
+      --space-3xl: 6rem;
+
+      /* Motion */
+      --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+      --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+      --dur-micro: 120ms;
+      --dur-short: 220ms;
+      --dur-long: 420ms;
+    }
+
+    /* Base reset */
+    *, *::before, *::after { box-sizing: border-box; }
+    html, body { overflow-x: clip; margin: 0; padding: 0; }
+    header { position: static !important; }
+
+    body {
+      font-family: var(--font-body);
+      font-size: var(--body-size);
+      line-height: 1.65;
+      color: var(--on-surface);
+      background-color: var(--background);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .page-grid {
+      display: grid;
+      gap: var(--space-2xl);
+      padding: var(--space-lg);
+      max-width: 1120px;
+      margin: 0 auto;
+      overflow-x: clip;
+    }
+    .page-grid * { min-width: 0; }
+
+    /* Focus rings */
+    :focus-visible {
+      outline: 3px solid var(--focus);
+      outline-offset: 2px;
+    }
+
+    /* Typography */
+    .kicker {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-sm);
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.07em;
+      color: var(--on-primary-container);
+      background: var(--primary-container);
+      padding: var(--space-xs) var(--space-md);
+      border-radius: var(--rounded-full);
+      margin-bottom: var(--space-md);
+    }
+
+    .display {
+      font-family: var(--font-headline);
+      font-weight: 900;
+      font-size: var(--display-size);
+      letter-spacing: -0.03em;
+      line-height: 1.06;
+      color: var(--on-surface);
+      margin: 0 0 var(--space-md) 0;
+    }
+    .display em {
+      font-style: normal;
+      color: var(--primary);
+    }
+
+    h2.section-heading {
+      font-family: var(--font-headline);
+      font-weight: 800;
+      font-size: var(--headline-size);
+      letter-spacing: -0.025em;
+      line-height: 1.15;
+      color: var(--on-surface);
+      margin: 0 0 var(--space-sm) 0;
+    }
+    h2.section-heading em {
+      font-style: normal;
+      color: var(--primary);
+    }
+
+    h3.card-title {
+      font-family: var(--font-headline);
+      font-weight: 700;
+      font-size: var(--subhead-size);
+      letter-spacing: -0.015em;
+      line-height: 1.25;
+      color: var(--on-surface);
+      margin: 0 0 var(--space-xs) 0;
+    }
+
+    p {
+      margin: 0 0 var(--space-md) 0;
+      max-width: 65ch;
+      color: var(--on-surface);
+    }
+    p.muted {
+      color: var(--on-surface-variant);
+    }
+
+    .label-text {
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.07em;
+      color: var(--on-surface-variant);
+    }
+
+    /* Rainbow ribbon accent strip */
+    .rainbow-strip {
+      display: grid;
+      grid-template-columns: repeat(7, minmax(0, 1fr));
+      height: 10px;
+      border-radius: var(--rounded-full);
+      overflow: hidden;
+      margin-bottom: var(--space-lg);
+    }
+    .rainbow-strip span:nth-child(1) { background: var(--rainbow-pink); }
+    .rainbow-strip span:nth-child(2) { background: var(--rainbow-red); }
+    .rainbow-strip span:nth-child(3) { background: var(--rainbow-orange); }
+    .rainbow-strip span:nth-child(4) { background: var(--rainbow-yellow); }
+    .rainbow-strip span:nth-child(5) { background: var(--rainbow-mint); }
+    .rainbow-strip span:nth-child(6) { background: var(--rainbow-sky); }
+    .rainbow-strip span:nth-child(7) { background: var(--rainbow-violet); }
+
+    /* Hero panel */
+    .hero-panel {
+      background: var(--surface-container-low);
+      border-radius: var(--rounded-lg);
+      box-shadow: var(--shadow-pink-deep);
+      padding: var(--space-2xl) var(--space-xl);
+      display: grid;
+      grid-template-columns: minmax(0, 1.2fr) minmax(0, 0.9fr);
+      gap: var(--space-xl);
+      align-items: center;
+    }
+
+    .hero-lede {
+      font-size: var(--subhead-size);
+      line-height: 1.5;
+      color: var(--on-surface-variant);
+      max-width: 48ch;
+      margin-bottom: var(--space-lg);
+    }
+
+    .quote-slab {
+      background: var(--surface-container);
+      border-radius: var(--rounded);
+      padding: var(--space-lg);
+      margin-top: var(--space-lg);
+      box-shadow: var(--shadow-grape);
+    }
+    .quote-slab blockquote {
+      margin: 0;
+      font-size: clamp(1.125rem, 1rem + 0.45vw, 1.375rem);
+      font-weight: 700;
+      line-height: 1.4;
+      color: var(--on-surface);
+    }
+    .quote-slab figcaption {
+      margin-top: var(--space-sm);
+      font-size: var(--label-size);
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--secondary);
+    }
+
+    /* Hero live collage vignette */
+    .hero-collage-box {
+      background: var(--surface-container);
+      border-radius: var(--rounded-lg);
+      padding: var(--space-lg);
+      box-shadow: var(--shadow-sky);
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-md);
+    }
+    .collage-stage-frame {
+      border-radius: var(--rounded);
+      background: var(--surface-container-low);
+      padding: var(--space-md);
+      transition: filter var(--dur-long) var(--ease-out), background-color var(--dur-long) var(--ease-out);
+    }
+    .collage-stage-frame svg {
+      width: 100%;
+      height: auto;
+      display: block;
+      border-radius: var(--rounded);
+    }
+
+    /* Buttons & Pills */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: var(--space-sm);
+      min-height: 44px;
+      padding: var(--space-sm) var(--space-lg);
+      border: none;
+      border-radius: var(--rounded-full);
+      font-family: var(--font-body);
+      font-size: var(--body-size);
+      font-weight: 700;
+      cursor: pointer;
+      transition: transform var(--dur-short) var(--ease-bounce), box-shadow var(--dur-short) var(--ease-out), background-color var(--dur-short) var(--ease-out);
+    }
+    .btn:hover { transform: var(--pop-scale); }
+    .btn:active { transform: scale(0.97); }
+    .btn:disabled { opacity: 0.55; cursor: not-allowed; transform: none; }
+
+    .btn-primary {
+      background: var(--primary);
+      color: var(--on-primary);
+      box-shadow: var(--shadow-pink);
+    }
+    .btn-primary:hover { box-shadow: var(--shadow-pink-deep); }
+
+    .btn-secondary {
+      background: var(--secondary);
+      color: var(--on-secondary);
+      box-shadow: var(--shadow-grape);
+    }
+
+    .btn-ghost {
+      background: var(--surface-container);
+      color: var(--primary);
+      box-shadow: var(--shadow-pink);
+    }
+
+    .btn-sm {
+      min-height: 44px;
+      padding: var(--space-xs) var(--space-md);
+      font-size: 0.9375rem;
+    }
+
+    /* Segmented controls & chips */
+    .segmented {
+      display: inline-flex;
+      flex-wrap: wrap;
+      gap: var(--space-xs);
+      background: var(--surface-container-high);
+      padding: var(--space-xs);
+      border-radius: var(--rounded-full);
+    }
+    .seg-btn {
+      min-height: 44px;
+      padding: var(--space-xs) var(--space-md);
+      border: none;
+      border-radius: var(--rounded-full);
+      background: transparent;
+      color: var(--on-surface-variant);
+      font-family: var(--font-body);
+      font-size: 0.9375rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: transform var(--dur-short) var(--ease-bounce), background-color var(--dur-short) var(--ease-out), color var(--dur-short) var(--ease-out);
+    }
+    .seg-btn:hover { transform: var(--pop-scale); color: var(--on-surface); }
+    .seg-btn[aria-pressed="true"] {
+      background: var(--primary);
+      color: var(--on-primary);
+      box-shadow: var(--shadow-pink);
+    }
+
+    /* Life-stage slider control */
+    .control-group {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-xs);
+    }
+    .control-label-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: var(--space-sm);
+      flex-wrap: wrap;
+    }
+    .stage-pill {
+      font-size: var(--label-size);
+      font-weight: 700;
+      color: var(--on-primary-container);
+      background: var(--primary-container);
+      padding: var(--space-xs) var(--space-md);
+      border-radius: var(--rounded-full);
+    }
+    input[type="range"].sticker-range {
+      width: 100%;
+      height: 14px;
+      appearance: none;
+      background: var(--surface-container-high);
+      border-radius: var(--rounded-full);
+      cursor: pointer;
+      margin: var(--space-sm) 0;
+    }
+    input[type="range"].sticker-range::-webkit-slider-thumb {
+      appearance: none;
+      width: 28px;
+      height: 28px;
+      border-radius: var(--rounded-full);
+      background: var(--primary);
+      box-shadow: var(--shadow-pink);
+      cursor: pointer;
+    }
+    input[type="range"].sticker-range::-moz-range-thumb {
+      width: 28px;
+      height: 28px;
+      border: none;
+      border-radius: var(--rounded-full);
+      background: var(--primary);
+      box-shadow: var(--shadow-pink);
+      cursor: pointer;
+    }
+
+    /* Section wrapper */
+    .diary-section {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-lg);
+    }
+    .section-header-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      gap: var(--space-lg);
+      flex-wrap: wrap;
+    }
+
+    /* 5-plate interactive visual diary grid */
+    .collage-grid {
+      display: grid;
+      grid-template-columns: repeat(12, minmax(0, 1fr));
+      gap: var(--space-lg);
+    }
+
+    .plate-card {
+      background: var(--surface-container-low);
+      border-radius: var(--rounded-lg);
+      box-shadow: var(--shadow-pink);
+      padding: var(--space-lg);
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-md);
+      transition: transform var(--dur-short) var(--ease-bounce), box-shadow var(--dur-short) var(--ease-out), background-color var(--dur-long) var(--ease-out);
+      container-type: inline-size;
+    }
+    .plate-card:nth-child(3n+2) { box-shadow: var(--shadow-sky); }
+    .plate-card:nth-child(3n+3) { box-shadow: var(--shadow-grape); }
+    .plate-card:hover { transform: var(--lift); }
+
+    /* Asymmetric rhythm across the 5 collage plates */
+    .plate-card.span-7 { grid-column: span 7; }
+    .plate-card.span-5 { grid-column: span 5; }
+    .plate-card.span-4 { grid-column: span 4; }
+    .plate-card.span-8 { grid-column: span 8; }
+
+    .plate-card.is-minimalist {
+      background: var(--greige-card);
+      box-shadow: var(--shadow-grape);
+    }
+    .plate-card.is-minimalist .plate-art {
+      filter: grayscale(0.88) contrast(0.92) brightness(1.03);
+      background: var(--greige-bg);
+    }
+    .plate-card.is-minimalist .card-title,
+    .plate-card.is-minimalist .plate-caption {
+      color: var(--greige-ink);
+    }
+
+    .plate-art {
+      border-radius: var(--rounded);
+      background: var(--surface-container);
+      padding: var(--space-sm);
+      overflow: hidden;
+      transition: filter var(--dur-long) var(--ease-out), background-color var(--dur-long) var(--ease-out);
+    }
+    .plate-art svg {
+      width: 100%;
+      height: auto;
+      display: block;
+      border-radius: calc(var(--rounded) - 4px);
+    }
+
+    .plate-meta-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: var(--space-sm);
+      flex-wrap: wrap;
+    }
+
+    .tag-pill {
+      display: inline-flex;
+      align-items: center;
+      font-size: var(--label-size);
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      padding: var(--space-xs) var(--space-md);
+      border-radius: var(--rounded-full);
+      background: var(--surface-container);
+      color: var(--secondary);
+    }
+    .plate-card.is-minimalist .tag-pill {
+      background: var(--greige-bg);
+      color: var(--greige-ink);
+    }
+
+    .swatch-dots {
+      display: inline-flex;
+      gap: 6px;
+      align-items: center;
+    }
+    .swatch-dot {
+      width: 14px;
+      height: 14px;
+      border-radius: var(--rounded-full);
+      display: inline-block;
+    }
+
+    /* Two-column narrative + lollipop chart section */
+    .split-feature {
+      display: grid;
+      grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr);
+      gap: var(--space-xl);
+      align-items: start;
+    }
+
+    .card {
+      background: var(--surface-container-low);
+      border-radius: var(--rounded-lg);
+      box-shadow: var(--shadow-pink);
+      padding: var(--space-xl);
+    }
+    .card.sky-shadow { box-shadow: var(--shadow-sky); }
+    .card.grape-shadow { box-shadow: var(--shadow-grape); }
+
+    .chart-box {
+      width: 100%;
+      min-height: 310px;
+      margin-top: var(--space-md);
+    }
+    .chart-box svg {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    .stat-row {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(min(180px, 100%), 1fr));
+      gap: var(--space-md);
+      margin-top: var(--space-lg);
+    }
+    .stat-tile {
+      background: var(--surface-container);
+      border-radius: var(--rounded);
+      padding: var(--space-md);
+    }
+    .stat-value {
+      font-size: clamp(1.75rem, 1.4rem + 1vw, 2.25rem);
+      font-weight: 900;
+      letter-spacing: -0.02em;
+      font-variant-numeric: tabular-nums;
+      color: var(--primary);
+      line-height: 1.1;
+      margin: var(--space-xs) 0;
+    }
+    .stat-tile:nth-child(2) .stat-value { color: var(--secondary); }
+    .stat-tile:nth-child(3) .stat-value { color: var(--on-surface); }
+
+    /* Interactive Finger-Paint & Sticker Studio */
+    .studio-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 320px) minmax(0, 1fr);
+      gap: var(--space-xl);
+      align-items: start;
+    }
+
+    .studio-controls {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-lg);
+    }
+
+    .palette-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-sm);
+    }
+    .paint-swatch {
+      width: 44px;
+      height: 44px;
+      border-radius: var(--rounded-full);
+      border: 3px solid var(--surface-container-low);
+      box-shadow: var(--shadow-pink);
+      cursor: pointer;
+      transition: transform var(--dur-short) var(--ease-bounce), box-shadow var(--dur-short) var(--ease-out);
+      position: relative;
+    }
+    .paint-swatch:hover { transform: scale(1.1); }
+    .paint-swatch[aria-pressed="true"] {
+      transform: scale(1.12);
+      outline: 3px solid var(--on-surface);
+      outline-offset: 2px;
+    }
+
+    .sticker-picker {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: var(--space-sm);
+    }
+    .sticker-choice {
+      min-height: 44px;
+      padding: var(--space-xs) var(--space-sm);
+      border-radius: var(--rounded);
+      border: 2px solid var(--outline-variant);
+      background: var(--surface-container);
+      color: var(--on-surface);
+      font-family: var(--font-body);
+      font-size: 0.875rem;
+      font-weight: 700;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      transition: transform var(--dur-short) var(--ease-bounce), background-color var(--dur-short) var(--ease-out);
+    }
+    .sticker-choice:hover { transform: var(--pop-scale); }
+    .sticker-choice[aria-pressed="true"] {
+      background: var(--primary-container);
+      border-color: var(--primary);
+      color: var(--on-primary-container);
+    }
+
+    .canvas-wrap {
+      background: var(--surface-container);
+      border-radius: var(--rounded-lg);
+      padding: var(--space-md);
+      box-shadow: var(--shadow-sky);
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-md);
+    }
+    canvas#finger-paint-canvas {
+      width: 100%;
+      height: 400px;
+      min-height: 320px;
+      background: var(--surface-container-low);
+      border-radius: var(--rounded);
+      cursor: crosshair;
+      touch-action: none;
+      display: block;
+    }
+    .canvas-actions {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: var(--space-md);
+      flex-wrap: wrap;
+    }
+    .action-cluster {
+      display: flex;
+      gap: var(--space-sm);
+      flex-wrap: wrap;
+    }
+
+    /* Reflection & Colour Pledge section */
+    .takeaway-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(min(260px, 100%), 1fr));
+      gap: var(--space-lg);
+    }
+    .takeaway-card {
+      background: var(--surface-container-low);
+      border-radius: var(--rounded);
+      padding: var(--space-lg);
+      box-shadow: var(--shadow-pink);
+    }
+    .takeaway-card:nth-child(2) { box-shadow: var(--shadow-sky); }
+    .takeaway-card:nth-child(3) { box-shadow: var(--shadow-grape); }
+
+    .pledge-panel {
+      background: var(--surface-container-low);
+      border-radius: var(--rounded-lg);
+      box-shadow: var(--shadow-grape);
+      padding: var(--space-xl);
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+      gap: var(--space-xl);
+      align-items: start;
+    }
+
+    .field-stack {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-xs);
+      margin-bottom: var(--space-md);
+    }
+    .field-stack label {
+      font-size: var(--label-size);
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--on-surface-variant);
+    }
+    .sticker-input, .sticker-select {
+      width: 100%;
+      min-height: 46px;
+      padding: var(--space-sm) var(--space-lg);
+      border-radius: var(--rounded-full);
+      border: 2px solid var(--outline);
+      background: var(--surface-container);
+      color: var(--on-surface);
+      font-family: var(--font-body);
+      font-size: var(--body-size);
+      transition: box-shadow var(--dur-short) var(--ease-out), border-color var(--dur-short) var(--ease-out);
+    }
+    .sticker-select {
+      padding-right: var(--space-xl);
+    }
+    .sticker-input:focus, .sticker-select:focus {
+      border-color: var(--primary);
+      box-shadow: var(--shadow-pink);
+      outline: none;
+    }
+
+    .pledge-list {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-sm);
+    }
+    .pledge-item {
+      background: var(--surface-container);
+      border-radius: var(--rounded);
+      padding: var(--space-md) var(--space-lg);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: var(--space-md);
+    }
+    .pledge-text-wrap {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+    .pledge-empty {
+      background: var(--surface-container);
+      border-radius: var(--rounded);
+      padding: var(--space-lg);
+      color: var(--on-surface-variant);
+    }
+
+    .status-banner {
+      min-height: 1.5rem;
+      font-size: 0.9375rem;
+      font-weight: 600;
+      color: var(--primary);
+    }
+
+    /* Footer */
+    .diary-footer {
+      background: var(--surface-container);
+      border-radius: var(--rounded-lg);
+      padding: var(--space-xl);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: var(--space-lg);
+      flex-wrap: wrap;
+    }
+
+    /* Scroll reveal */
+    .reveal-item {
+      opacity: 0;
+      transform: translateY(16px);
+      transition: opacity var(--dur-long) var(--ease-out), transform var(--dur-long) var(--ease-out);
+    }
+    .reveal-item.is-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Responsive breakpoints */
+    @media (max-width: 900px) {
+      .hero-panel,
+      .split-feature,
+      .studio-grid,
+      .pledge-panel {
+        grid-template-columns: 1fr;
+      }
+      .plate-card.span-7,
+      .plate-card.span-5,
+      .plate-card.span-4,
+      .plate-card.span-8 {
+        grid-column: span 12;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .page-grid {
+        padding: var(--space-md);
+        gap: var(--space-xl);
+      }
+      .hero-panel {
+        padding: var(--space-lg);
+      }
+      .card, .pledge-panel {
+        padding: var(--space-lg);
+      }
+      canvas#finger-paint-canvas {
+        height: 300px;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+      }
+      .reveal-item {
+        opacity: 1;
+        transform: none;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="page-grid">
+
+    <!-- 1. HERO & THESIS OPENING -->
+    <header class="hero-panel">
+      <div>
+        <div class="rainbow-strip" aria-hidden="true">
+          <span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+        </div>
+        <span class="kicker">a visual diary about childhood innocence and the joy of color</span>
+        <h1 class="display">It's Not a 'Brave Choice'. <em>It's Fun.</em></h1>
+        <p class="hero-lede">
+          Somewhere between finger-painting on the kitchen floor and picking out our first sofa, we learnt a quiet, unspoken rule: tasteful adults live in beige, charcoal, and off-white. Bright colour stopped being an everyday delight and turned into something people nervously apologise for.
+        </p>
+
+        <figure class="quote-slab">
+          <blockquote>“growing up taught us to appreciate simplicity. childhood taught us to celebrate colour.”</blockquote>
+          <figcaption>Diary Entry 01 — On Unlearning Restraint</figcaption>
+        </figure>
+      </div>
+
+      <aside class="hero-collage-box" aria-label="Interactive life-stage colour dial">
+        <div class="collage-stage-frame" id="hero-stage-frame">
+          <!-- Bespoke SVG collage preview responding to the life-stage slider -->
+          <svg id="hero-collage-svg" viewBox="0 0 420 340" role="img" aria-label="Illustrated collage of childhood rainbow treats, bright interiors, and finger paint">
+            <rect width="420" height="340" rx="18" fill="var(--surface-container)" />
+            <!-- Rainbow arch backdrop -->
+            <path d="M 45 275 A 165 165 0 0 1 375 275" fill="none" stroke="var(--rainbow-pink)" stroke-width="22" stroke-linecap="round" />
+            <path d="M 70 275 A 140 140 0 0 1 350 275" fill="none" stroke="var(--rainbow-orange)" stroke-width="20" stroke-linecap="round" />
+            <path d="M 95 275 A 115 115 0 0 1 325 275" fill="none" stroke="var(--rainbow-yellow)" stroke-width="18" stroke-linecap="round" />
+            <path d="M 120 275 A 90 90 0 0 1 300 275" fill="none" stroke="var(--rainbow-mint)" stroke-width="18" stroke-linecap="round" />
+            <path d="M 145 275 A 65 65 0 0 1 275 275" fill="none" stroke="var(--rainbow-sky)" stroke-width="18" stroke-linecap="round" />
+            <!-- Pink frosted cake slice / treat -->
+            <g transform="translate(52, 168)">
+              <rect x="0" y="34" width="110" height="72" rx="14" fill="var(--rainbow-pink)" />
+              <rect x="0" y="52" width="110" height="14" fill="var(--rainbow-yellow)" />
+              <rect x="0" y="72" width="110" height="14" fill="var(--rainbow-sky)" />
+              <path d="M -4 34 Q 15 12 55 14 Q 95 16 114 34 Z" fill="var(--cream-frosting)" />
+              <circle cx="30" cy="24" r="5" fill="var(--rainbow-red)" />
+              <circle cx="55" cy="20" r="6" fill="var(--rainbow-mint)" />
+              <circle cx="82" cy="25" r="5" fill="var(--rainbow-violet)" />
+            </g>
+            <!-- Joyful pink chair & yellow lamp vignette -->
+            <g transform="translate(228, 152)">
+              <rect x="12" y="42" width="124" height="68" rx="22" fill="var(--primary)" />
+              <rect x="26" y="18" width="96" height="44" rx="18" fill="var(--rainbow-blush)" />
+              <rect x="24" y="106" width="14" height="22" rx="6" fill="var(--secondary)" />
+              <rect x="110" y="106" width="14" height="22" rx="6" fill="var(--secondary)" />
+              <circle cx="118" cy="14" r="18" fill="var(--rainbow-yellow)" />
+            </g>
+            <!-- Paint splatters & child stars -->
+            <circle cx="72" cy="64" r="16" fill="var(--rainbow-sky)" />
+            <circle cx="98" cy="48" r="9" fill="var(--rainbow-yellow)" />
+            <circle cx="348" cy="66" r="18" fill="var(--rainbow-pink)" />
+            <circle cx="320" cy="46" r="10" fill="var(--rainbow-mint)" />
+            <path d="M 210 34 L 217 50 L 234 52 L 221 63 L 225 80 L 210 71 L 195 80 L 199 63 L 186 52 L 203 50 Z" fill="var(--rainbow-yellow)" />
+          </svg>
+        </div>
+
+        <div class="control-group">
+          <div class="control-label-row">
+            <label for="life-stage-slider" class="label-text">The Adulthood Desaturation Dial</label>
+            <span class="stage-pill" id="life-stage-badge">Age 6 · Unfiltered Joy</span>
+          </div>
+          <input type="range" id="life-stage-slider" class="sticker-range" min="0" max="100" value="0" oninput="handleStageSlider(this.value)">
+          <p class="muted" id="life-stage-caption" style="margin-bottom: 0;">
+            Every crayon stays in the box. Pink sofas, rainbow sprinkles, and mismatched socks need no justification.
+          </p>
+        </div>
+      </aside>
+    </header>
+
+    <!-- 2. THE FIVE VISUAL DIARY PLATES -->
+    <section class="diary-section reveal-item" aria-labelledby="collage-heading">
+      <div class="section-header-row">
+        <div>
+          <span class="label-text">Chapter I · The Five Collage Plates</span>
+          <h2 class="section-heading" id="collage-heading">What happens when adulthood <em>edits</em> your favourite memories</h2>
+          <p class="muted">
+            Toggle any plate below between how it actually felt as a child and how modern lifestyle culture would rebrand it into “quiet luxury”.
+          </p>
+        </div>
+        <div class="segmented" role="group" aria-label="Global plate aesthetic mode">
+          <button type="button" class="seg-btn" id="btn-all-joy" aria-pressed="true" onclick="setAllPlatesMode('joy')">Childhood Joy</button>
+          <button type="button" class="seg-btn" id="btn-all-minimal" aria-pressed="false" onclick="setAllPlatesMode('minimalist')">Adult Minimalism</button>
+        </div>
+      </div>
+
+      <div class="collage-grid" id="collage-grid">
+        <!-- Plate 1: Finger Painting -->
+        <article class="plate-card span-7" id="plate-finger-paint" data-plate="finger-paint">
+          <div class="plate-art">
+            <svg viewBox="0 0 560 300" role="img" aria-label="Illustration of joyful pink, sky blue, yellow, and orange finger painting swirls and handprints">
+              <rect width="560" height="300" rx="14" fill="var(--cream-frosting)" />
+              <!-- Loose finger-painted ribbon sweeps -->
+              <path d="M 35 235 C 120 110, 210 270, 310 140 C 390 40, 465 185, 530 95" fill="none" stroke="var(--rainbow-pink)" stroke-width="26" stroke-linecap="round" />
+              <path d="M 45 120 C 130 45, 225 190, 345 95 C 425 35, 470 115, 520 65" fill="none" stroke="var(--rainbow-sky)" stroke-width="20" stroke-linecap="round" opacity="0.85" />
+              <path d="M 85 265 C 190 215, 290 265, 430 190" fill="none" stroke="var(--rainbow-yellow)" stroke-width="22" stroke-linecap="round" />
+              <!-- Stylised playful handprint -->
+              <g transform="translate(175, 86)">
+                <ellipse cx="48" cy="82" rx="34" ry="38" fill="var(--primary)" />
+                <rect x="8" y="28" width="14" height="46" rx="7" transform="rotate(-18 15 51)" fill="var(--primary)" />
+                <rect x="26" y="10" width="14" height="54" rx="7" transform="rotate(-6 33 37)" fill="var(--primary)" />
+                <rect x="46" y="4" width="14" height="58" rx="7" fill="var(--primary)" />
+                <rect x="66" y="14" width="14" height="52" rx="7" transform="rotate(10 73 40)" fill="var(--primary)" />
+                <rect x="82" y="56" width="14" height="40" rx="7" transform="rotate(42 89 76)" fill="var(--primary)" />
+              </g>
+              <!-- Paint pots -->
+              <g transform="translate(390, 175)">
+                <rect x="0" y="22" width="44" height="48" rx="10" fill="var(--rainbow-orange)" />
+                <ellipse cx="22" cy="22" rx="22" ry="7" fill="var(--rainbow-yellow)" />
+                <rect x="58" y="30" width="44" height="40" rx="10" fill="var(--rainbow-mint)" />
+                <ellipse cx="80" cy="30" rx="22" ry="7" fill="var(--rainbow-sky)" />
+              </g>
+              <circle cx="96" cy="70" r="14" fill="var(--rainbow-red)" />
+              <circle cx="122" cy="54" r="8" fill="var(--rainbow-orange)" />
+              <circle cx="492" cy="220" r="12" fill="var(--rainbow-violet)" />
+            </svg>
+          </div>
+          <div class="plate-meta-row">
+            <span class="tag-pill" id="tag-finger-paint">01 · Finger Painting</span>
+            <div class="swatch-dots" aria-hidden="true">
+              <span class="swatch-dot" style="background: var(--rainbow-pink);"></span>
+              <span class="swatch-dot" style="background: var(--rainbow-yellow);"></span>
+              <span class="swatch-dot" style="background: var(--rainbow-sky);"></span>
+              <span class="swatch-dot" style="background: var(--rainbow-mint);"></span>
+            </div>
+          </div>
+          <h3 class="card-title" id="title-finger-paint">Hands first, tidy later</h3>
+          <p class="plate-caption" id="desc-finger-paint">
+            At five years old, nobody asks whether cadmium yellow clashes with magenta. You dip both palms straight into the tray because watching two bright colours collide on sugar paper is pure magic.
+          </p>
+          <div>
+            <button type="button" class="btn btn-ghost btn-sm" id="toggle-finger-paint" onclick="togglePlate('finger-paint')">
+              Preview Adult Minimalist Edit
+            </button>
+          </div>
+        </article>
+
+        <!-- Plate 2: Rainbow Treats -->
+        <article class="plate-card span-5" id="plate-rainbow-treats" data-plate="rainbow-treats">
+          <div class="plate-art">
+            <svg viewBox="0 0 400 300" role="img" aria-label="Illustration of a six-layer rainbow sponge cake, pastel frosting, sprinkles, and a striped lolly">
+              <rect width="400" height="300" rx="14" fill="var(--surface-container)" />
+              <!-- Scalloped pink plate -->
+              <ellipse cx="200" cy="245" rx="145" ry="28" fill="var(--primary-container)" />
+              <!-- Layered rainbow cake slice -->
+              <rect x="92" y="110" width="166" height="22" rx="4" fill="var(--rainbow-red)" />
+              <rect x="92" y="132" width="166" height="22" rx="4" fill="var(--rainbow-orange)" />
+              <rect x="92" y="154" width="166" height="22" rx="4" fill="var(--rainbow-yellow)" />
+              <rect x="92" y="176" width="166" height="22" rx="4" fill="var(--rainbow-mint)" />
+              <rect x="92" y="198" width="166" height="22" rx="4" fill="var(--rainbow-sky)" />
+              <rect x="92" y="220" width="166" height="22" rx="4" fill="var(--rainbow-violet)" />
+              <!-- Frosting cap -->
+              <path d="M 86 112 Q 112 76 175 78 Q 238 80 264 112 Q 245 128 228 114 Q 204 130 180 114 Q 154 132 132 114 Q 108 128 86 112 Z" fill="var(--cream-frosting)" />
+              <!-- Sprinkles & cherry -->
+              <circle cx="175" cy="70" r="14" fill="var(--primary)" />
+              <rect x="122" y="96" width="14" height="5" rx="2.5" transform="rotate(-24 129 98)" fill="var(--rainbow-pink)" />
+              <rect x="158" y="94" width="14" height="5" rx="2.5" transform="rotate(18 165 96)" fill="var(--rainbow-sky)" />
+              <rect x="206" y="98" width="14" height="5" rx="2.5" transform="rotate(-15 213 100)" fill="var(--rainbow-yellow)" />
+              <rect x="234" y="95" width="14" height="5" rx="2.5" transform="rotate(28 241 97)" fill="var(--rainbow-mint)" />
+              <!-- Striped lolly on the side -->
+              <g transform="translate(294, 90)">
+                <rect x="19" y="76" width="8" height="80" rx="4" fill="var(--cream-frosting)" />
+                <circle cx="23" cy="44" r="36" fill="var(--rainbow-pink)" />
+                <circle cx="23" cy="44" r="24" fill="var(--rainbow-yellow)" />
+                <circle cx="23" cy="44" r="13" fill="var(--rainbow-sky)" />
+                <circle cx="23" cy="44" r="5" fill="var(--cream-frosting)" />
+              </g>
+            </svg>
+          </div>
+          <div class="plate-meta-row">
+            <span class="tag-pill" id="tag-rainbow-treats">02 · Rainbow Treats</span>
+            <div class="swatch-dots" aria-hidden="true">
+              <span class="swatch-dot" style="background: var(--rainbow-red);"></span>
+              <span class="swatch-dot" style="background: var(--rainbow-orange);"></span>
+              <span class="swatch-dot" style="background: var(--rainbow-yellow);"></span>
+              <span class="swatch-dot" style="background: var(--rainbow-violet);"></span>
+            </div>
+          </div>
+          <h3 class="card-title" id="title-rainbow-treats">Sweetness in six stripes</h3>
+          <p class="plate-caption" id="desc-rainbow-treats">
+            Birthday cake used to look like a pocket firework — hundreds-and-thousands, neon icing, and ice lollies that stained your tongue electric blue for an afternoon.
+          </p>
+          <div>
+            <button type="button" class="btn btn-ghost btn-sm" id="toggle-rainbow-treats" onclick="togglePlate('rainbow-treats')">
+              Preview Adult Minimalist Edit
+            </button>
+          </div>
+        </article>
+
+        <!-- Plate 3: Bright Fashion -->
+        <article class="plate-card span-4" id="plate-bright-fashion" data-plate="bright-fashion">
+          <div class="plate-art">
+            <svg viewBox="0 0 360 300" role="img" aria-label="Illustration of colour-blocked fashion: a hot pink jumper, sunshine yellow skirt, cobalt boots, and striped scarf">
+              <rect width="360" height="300" rx="14" fill="var(--surface-container)" />
+              <!-- Decorative confetti shapes -->
+              <circle cx="56" cy="54" r="14" fill="var(--rainbow-yellow)" />
+              <circle cx="308" cy="64" r="16" fill="var(--rainbow-mint)" />
+              <rect x="282" y="218" width="24" height="24" rx="8" transform="rotate(20 294 230)" fill="var(--rainbow-sky)" />
+              <!-- Colour-block jumper -->
+              <path d="M 110 72 L 154 56 L 206 56 L 250 72 L 280 132 L 244 148 L 228 112 L 228 176 L 132 176 L 132 112 L 116 148 L 80 132 Z" fill="var(--primary)" />
+              <rect x="132" y="102" width="96" height="24" fill="var(--rainbow-orange)" />
+              <rect x="132" y="138" width="96" height="20" fill="var(--rainbow-pink)" />
+              <!-- Pleated sunshine skirt -->
+              <path d="M 132 178 L 228 178 L 256 244 L 104 244 Z" fill="var(--rainbow-yellow)" />
+              <!-- Cobalt boots -->
+              <rect x="130" y="246" width="32" height="34" rx="10" fill="var(--rainbow-cobalt)" />
+              <rect x="198" y="246" width="32" height="34" rx="10" fill="var(--rainbow-cobalt)" />
+              <!-- Polka-dot scarf -->
+              <rect x="148" y="54" width="64" height="22" rx="11" fill="var(--secondary)" />
+              <rect x="184" y="64" width="22" height="62" rx="11" fill="var(--secondary)" />
+              <circle cx="195" cy="88" r="4" fill="var(--rainbow-yellow)" />
+              <circle cx="195" cy="108" r="4" fill="var(--rainbow-mint)" />
+            </svg>
+          </div>
+          <div class="plate-meta-row">
+            <span class="tag-pill" id="tag-bright-fashion">03 · Bright Fashion</span>
+            <div class="swatch-dots" aria-hidden="true">
+              <span class="swatch-dot" style="background: var(--primary);"></span>
+              <span class="swatch-dot" style="background: var(--rainbow-orange);"></span>
+              <span class="swatch-dot" style="background: var(--rainbow-cobalt);"></span>
+            </div>
+          </div>
+          <h3 class="card-title" id="title-bright-fashion">Dressing for delight</h3>
+          <p class="plate-caption" id="desc-bright-fashion">
+            Before “capsule wardrobes” persuaded us to dress in five shades of oat, getting dressed meant pairing a tangerine jumper with cobalt boots purely because both made you grin.
+          </p>
+          <div>
+            <button type="button" class="btn btn-ghost btn-sm" id="toggle-bright-fashion" onclick="togglePlate('bright-fashion')">
+              Preview Adult Minimalist Edit
+            </button>
+          </div>
+        </article>
+
+        <!-- Plate 4: Colourful Interiors -->
+        <article class="plate-card span-8" id="plate-colourful-interiors" data-plate="colourful-interiors">
+          <div class="plate-art">
+            <svg viewBox="0 0 600 300" role="img" aria-label="Illustration of a vibrant living room with a coral-pink sofa, checkerboard rug, sky-blue wall art, and tangerine floor lamp">
+              <rect width="600" height="300" rx="14" fill="var(--rainbow-blush)" />
+              <!-- Lower dado wall -->
+              <rect x="0" y="190" width="600" height="110" fill="var(--surface-container-low)" />
+              <!-- Framed abstract prints -->
+              <rect x="64" y="34" width="96" height="112" rx="12" fill="var(--cream-frosting)" />
+              <circle cx="112" cy="82" r="30" fill="var(--rainbow-sky)" />
+              <rect x="86" y="104" width="52" height="22" rx="8" fill="var(--rainbow-yellow)" />
+
+              <rect x="184" y="48" width="84" height="94" rx="12" fill="var(--cream-frosting)" />
+              <path d="M 200 124 A 26 26 0 0 1 252 124" fill="none" stroke="var(--primary)" stroke-width="12" stroke-linecap="round" />
+              <path d="M 212 124 A 14 14 0 0 1 240 124" fill="none" stroke="var(--rainbow-mint)" stroke-width="10" stroke-linecap="round" />
+
+              <!-- Tangerine floor lamp -->
+              <rect x="498" y="88" width="10" height="146" rx="5" fill="var(--secondary)" />
+              <ellipse cx="503" cy="236" rx="28" ry="8" fill="var(--secondary)" />
+              <path d="M 468 92 Q 503 36 538 92 Z" fill="var(--rainbow-orange)" />
+              <circle cx="503" cy="52" r="10" fill="var(--rainbow-yellow)" />
+
+              <!-- Bubblegum pink sofa -->
+              <rect x="150" y="148" width="276" height="84" rx="28" fill="var(--primary)" />
+              <rect x="174" y="120" width="228" height="58" rx="22" fill="var(--rainbow-pink)" />
+              <rect x="142" y="164" width="38" height="66" rx="16" fill="var(--secondary)" />
+              <rect x="396" y="164" width="38" height="66" rx="16" fill="var(--secondary)" />
+              <!-- Cushions -->
+              <rect x="194" y="138" width="44" height="40" rx="12" transform="rotate(-8 216 158)" fill="var(--rainbow-yellow)" />
+              <rect x="336" y="138" width="44" height="40" rx="12" transform="rotate(8 358 158)" fill="var(--rainbow-mint)" />
+
+              <!-- Checkerboard rug -->
+              <g transform="translate(128, 246)">
+                <rect x="0" y="0" width="54" height="22" rx="4" fill="var(--rainbow-sky)" />
+                <rect x="54" y="0" width="54" height="22" rx="4" fill="var(--cream-frosting)" />
+                <rect x="108" y="0" width="54" height="22" rx="4" fill="var(--rainbow-sky)" />
+                <rect x="162" y="0" width="54" height="22" rx="4" fill="var(--cream-frosting)" />
+                <rect x="216" y="0" width="54" height="22" rx="4" fill="var(--rainbow-sky)" />
+                <rect x="270" y="0" width="54" height="22" rx="4" fill="var(--cream-frosting)" />
+                <rect x="0" y="22" width="54" height="22" rx="4" fill="var(--cream-frosting)" />
+                <rect x="54" y="22" width="54" height="22" rx="4" fill="var(--rainbow-pink)" />
+                <rect x="108" y="22" width="54" height="22" rx="4" fill="var(--cream-frosting)" />
+                <rect x="162" y="22" width="54" height="22" rx="4" fill="var(--rainbow-pink)" />
+                <rect x="216" y="22" width="54" height="22" rx="4" fill="var(--cream-frosting)" />
+                <rect x="270" y="22" width="54" height="22" rx="4" fill="var(--rainbow-pink)" />
+              </g>
+            </svg>
+          </div>
+          <div class="plate-meta-row">
+            <span class="tag-pill" id="tag-colourful-interiors">04 · Colourful Interiors</span>
+            <div class="swatch-dots" aria-hidden="true">
+              <span class="swatch-dot" style="background: var(--rainbow-blush);"></span>
+              <span class="swatch-dot" style="background: var(--primary);"></span>
+              <span class="swatch-dot" style="background: var(--rainbow-sky);"></span>
+              <span class="swatch-dot" style="background: var(--rainbow-mint);"></span>
+            </div>
+          </div>
+          <h3 class="card-title" id="title-colourful-interiors">Rooms that hug back</h3>
+          <p class="plate-caption" id="desc-colourful-interiors">
+            Estate agents warn us to paint every wall “alabaster” for an imaginary future buyer. Yet stepping into a room with a bubblegum sofa and a mint lampshade instantly lowers your shoulders.
+          </p>
+          <div>
+            <button type="button" class="btn btn-ghost btn-sm" id="toggle-colourful-interiors" onclick="togglePlate('colourful-interiors')">
+              Preview Adult Minimalist Edit
+            </button>
+          </div>
+        </article>
+
+        <!-- Plate 5: Child Art -->
+        <article class="plate-card span-12" style="grid-column: span 12;" id="plate-child-art" data-plate="child-art">
+          <div class="plate-art">
+            <svg viewBox="0 0 880 260" role="img" aria-label="Illustration of a child's crayon drawing taped up with pink tape: a smiling sunshine, purple house, rainbow arc, and vibrant flowers">
+              <rect width="880" height="260" rx="14" fill="var(--cream-frosting)" />
+              <!-- Masking tape corners -->
+              <rect x="18" y="14" width="66" height="22" rx="6" transform="rotate(-22 51 25)" fill="var(--primary-container)" />
+              <rect x="796" y="14" width="66" height="22" rx="6" transform="rotate(22 829 25)" fill="var(--rainbow-yellow)" />
+              <!-- Smiling sun -->
+              <circle cx="126" cy="84" r="40" fill="var(--rainbow-yellow)" />
+              <circle cx="114" cy="78" r="4" fill="var(--on-surface)" />
+              <circle cx="138" cy="78" r="4" fill="var(--on-surface)" />
+              <path d="M 112 94 Q 126 108 140 94" fill="none" stroke="var(--on-surface)" stroke-width="4" stroke-linecap="round" />
+              <!-- Wonky rainbow -->
+              <path d="M 225 206 C 245 48, 435 48, 455 206" fill="none" stroke="var(--rainbow-pink)" stroke-width="14" stroke-linecap="round" />
+              <path d="M 245 206 C 262 72, 418 72, 435 206" fill="none" stroke="var(--rainbow-orange)" stroke-width="14" stroke-linecap="round" />
+              <path d="M 265 206 C 280 96, 400 96, 415 206" fill="none" stroke="var(--rainbow-mint)" stroke-width="14" stroke-linecap="round" />
+              <path d="M 285 206 C 296 120, 384 120, 395 206" fill="none" stroke="var(--rainbow-sky)" stroke-width="14" stroke-linecap="round" />
+              <!-- Purple house with pink roof -->
+              <rect x="520" y="114" width="124" height="104" rx="12" fill="var(--secondary)" />
+              <path d="M 504 120 L 582 48 L 660 120 Z" fill="var(--primary)" />
+              <rect x="564" y="156" width="36" height="62" rx="10" fill="var(--rainbow-yellow)" />
+              <circle cx="548" cy="144" r="12" fill="var(--rainbow-sky)" />
+              <circle cx="616" cy="144" r="12" fill="var(--rainbow-sky)" />
+              <!-- Giant flowers -->
+              <rect x="738" y="138" width="10" height="80" rx="5" fill="var(--rainbow-mint)" />
+              <circle cx="743" cy="116" r="18" fill="var(--rainbow-pink)" />
+              <circle cx="723" cy="132" r="16" fill="var(--rainbow-orange)" />
+              <circle cx="763" cy="132" r="16" fill="var(--rainbow-sky)" />
+              <circle cx="743" cy="132" r="14" fill="var(--rainbow-yellow)" />
+              <!-- Green crayon grass -->
+              <path d="M 30 222 Q 220 208 440 222 T 850 218" fill="none" stroke="var(--rainbow-mint)" stroke-width="14" stroke-linecap="round" />
+            </svg>
+          </div>
+          <div class="plate-meta-row">
+            <span class="tag-pill" id="tag-child-art">05 · Child Art</span>
+            <div class="swatch-dots" aria-hidden="true">
+              <span class="swatch-dot" style="background: var(--rainbow-yellow);"></span>
+              <span class="swatch-dot" style="background: var(--secondary);"></span>
+              <span class="swatch-dot" style="background: var(--rainbow-mint);"></span>
+              <span class="swatch-dot" style="background: var(--rainbow-pink);"></span>
+            </div>
+          </div>
+          <h3 class="card-title" id="title-child-art">Before anyone graded the lines</h3>
+          <p class="plate-caption" id="desc-child-art">
+            Notice how children draw houses purple, skies emerald, and suns with smiling faces. Nobody told them colour had to be justified by a moodboard — it was simply there to be enjoyed.
+          </p>
+          <div>
+            <button type="button" class="btn btn-ghost btn-sm" id="toggle-child-art" onclick="togglePlate('child-art')">
+              Preview Adult Minimalist Edit
+            </button>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- 3. THE CULTURAL SHIFT: ESSAY & LOLLIPOP VISUALISATION -->
+    <section class="diary-section reveal-item" aria-labelledby="shift-heading">
+      <div class="split-feature">
+        <div class="card">
+          <span class="label-text">Chapter II · The Aesthetics of Growing Up</span>
+          <h2 class="section-heading" id="shift-heading">Why did bright colour become <em>a ‘brave choice’</em>?</h2>
+          <p>
+            When someone paints their front door flamingo pink or buys a cobalt kettle, the standard adult compliment is rarely “that looks joyful”. More often, it is a slightly hesitant: <em>“Ooh, how brave!”</em>
+          </p>
+          <p>
+            That single adjective gives the game away. Minimalism trained us to equate muted neutrality with safety, competence, and good taste. Stepping outside oatmeal and slate began to feel like taking a social risk—as though wearing magenta required courage rather than simply liking pink.
+          </p>
+          <p style="margin-bottom: 0;">
+            Simplicity has real value when it clears away clutter. Yet somewhere along the way, we mistook <strong>visual calm</strong> for <strong>emotional silence</strong>, scrubbing away the playful hues that once anchored our everyday delight.
+          </p>
+
+          <div class="stat-row">
+            <div class="stat-tile">
+              <span class="label-text">Childhood Palette</span>
+              <div class="stat-value">7+ Hues</div>
+              <span class="muted">Used freely together</span>
+            </div>
+            <div class="stat-tile">
+              <span class="label-text">Default Adult Flat</span>
+              <div class="stat-value">2 Tones</div>
+              <span class="muted">Off-white &amp; warm grey</span>
+            </div>
+            <div class="stat-tile">
+              <span class="label-text">Effort to Reclaim</span>
+              <div class="stat-value">Zero Risk</div>
+              <span class="muted">Just pure fun</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="card sky-shadow">
+          <div style="display: flex; justify-content: space-between; align-items: flex-start; gap: var(--space-md); flex-wrap: wrap;">
+            <div>
+              <span class="label-text">Chroma Index Across Everyday Spaces</span>
+              <h3 class="card-title">Where did all the colour go?</h3>
+              <p class="muted" style="margin-bottom: var(--space-sm);">
+                Compare expressive colour variety (0–100 scale) across childhood memory versus contemporary adult defaults.
+              </p>
+            </div>
+            <div class="segmented" role="group" aria-label="Chart perspective filter">
+              <button type="button" class="seg-btn" id="chart-btn-compare" aria-pressed="true" onclick="setChartView('compare')">Compare Both</button>
+              <button type="button" class="seg-btn" id="chart-btn-gap" aria-pressed="false" onclick="setChartView('gap')">Show Colour Gap</button>
+            </div>
+          </div>
+
+          <div class="chart-box" id="chroma-chart-box">
+            <svg id="chroma-lollipop-svg" viewBox="0 0 520 310" role="img" aria-label="Lollipop comparison chart showing high colour vibrancy in childhood spaces compared to muted adult defaults across interiors, clothing, packaging, and art"></svg>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 4. INTERACTIVE FINGER-PAINT & STICKER STUDIO -->
+    <section class="diary-section reveal-item" aria-labelledby="studio-heading">
+      <div>
+        <span class="label-text">Chapter III · Hands-On Play</span>
+        <h2 class="section-heading" id="studio-heading">Make a mess without <em>overthinking</em> it</h2>
+        <p class="muted">
+          No moodboards, no neutral beige filters, and no rules about what matches. Pick a paint pot, draw across the page, or stamp stickers straight onto your diary postcard.
+        </p>
+      </div>
+
+      <div class="studio-grid">
+        <div class="card grape-shadow studio-controls">
+          <div>
+            <span class="label-text">1 · Choose Your Tool</span>
+            <div class="segmented" style="margin-top: var(--space-xs); width: 100%;" role="group" aria-label="Studio drawing mode">
+              <button type="button" class="seg-btn" id="tool-paint" aria-pressed="true" onclick="setStudioTool('paint')">Finger Paint</button>
+              <button type="button" class="seg-btn" id="tool-sticker" aria-pressed="false" onclick="setStudioTool('sticker')">Place Stickers</button>
+            </div>
+          </div>
+
+          <div>
+            <span class="label-text">2 · Collage Colour Pots</span>
+            <div class="palette-row" style="margin-top: var(--space-sm);" role="group" aria-label="Paint colour swatches">
+              <button type="button" class="paint-swatch" data-color-token="--primary" aria-label="Hot Pink" aria-pressed="true" style="background: var(--primary);" onclick="selectPaintColour('--primary', this)"></button>
+              <button type="button" class="paint-swatch" data-color-token="--rainbow-pink" aria-label="Bubblegum Pink" aria-pressed="false" style="background: var(--rainbow-pink);" onclick="selectPaintColour('--rainbow-pink', this)"></button>
+              <button type="button" class="paint-swatch" data-color-token="--rainbow-orange" aria-label="Tangerine" aria-pressed="false" style="background: var(--rainbow-orange);" onclick="selectPaintColour('--rainbow-orange', this)"></button>
+              <button type="button" class="paint-swatch" data-color-token="--rainbow-yellow" aria-label="Sunshine Yellow" aria-pressed="false" style="background: var(--rainbow-yellow);" onclick="selectPaintColour('--rainbow-yellow', this)"></button>
+              <button type="button" class="paint-swatch" data-color-token="--rainbow-mint" aria-label="Meadow Mint" aria-pressed="false" style="background: var(--rainbow-mint);" onclick="selectPaintColour('--rainbow-mint', this)"></button>
+              <button type="button" class="paint-swatch" data-color-token="--rainbow-sky" aria-label="Sky Blue" aria-pressed="false" style="background: var(--rainbow-sky);" onclick="selectPaintColour('--rainbow-sky', this)"></button>
+              <button type="button" class="paint-swatch" data-color-token="--secondary" aria-label="Grape Purple" aria-pressed="false" style="background: var(--secondary);" onclick="selectPaintColour('--secondary', this)"></button>
+            </div>
+          </div>
+
+          <div>
+            <span class="label-text">3 · Sticker Stamp Sheet</span>
+            <div class="sticker-picker" style="margin-top: var(--space-sm);" role="group" aria-label="Sticker stamps">
+              <button type="button" class="sticker-choice" aria-pressed="true" onclick="selectStickerShape('rainbow', this)">Rainbow</button>
+              <button type="button" class="sticker-choice" aria-pressed="false" onclick="selectStickerShape('star', this)">Starburst</button>
+              <button type="button" class="sticker-choice" aria-pressed="false" onclick="selectStickerShape('heart', this)">Heart</button>
+              <button type="button" class="sticker-choice" aria-pressed="false" onclick="selectStickerShape('flower', this)">Flower</button>
+              <button type="button" class="sticker-choice" aria-pressed="false" onclick="selectStickerShape('sun', this)">Sunshine</button>
+              <button type="button" class="sticker-choice" aria-pressed="false" onclick="selectStickerShape('splat', this)">Splash</button>
+            </div>
+          </div>
+
+          <div class="control-group">
+            <div class="control-label-row">
+              <label for="brush-size-slider" class="label-text">Brush / Sticker Size</label>
+              <span class="stage-pill" id="brush-size-readout">24 px</span>
+            </div>
+            <input type="range" id="brush-size-slider" class="sticker-range" min="10" max="48" value="24" oninput="setBrushSize(this.value)">
+          </div>
+        </div>
+
+        <div class="canvas-wrap">
+          <canvas id="finger-paint-canvas" width="760" height="420" aria-label="Interactive finger painting and sticker canvas"></canvas>
+          <div class="canvas-actions">
+            <span class="status-banner" id="studio-status" aria-live="polite">Drag to finger-paint, or switch to Place Stickers and tap anywhere.</span>
+            <div class="action-cluster">
+              <button type="button" class="btn btn-ghost btn-sm" onclick="undoCanvas()">Undo Last</button>
+              <button type="button" class="btn btn-ghost btn-sm" id="clear-canvas-btn" onclick="clearCanvas(this)">Clear Page</button>
+              <button type="button" class="btn btn-primary btn-sm" onclick="downloadDiaryPostcard()">Save Postcard</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 5. TAKEAWAYS & COLOUR PLEDGE LOG -->
+    <section class="diary-section reveal-item" aria-labelledby="pledge-heading">
+      <div>
+        <span class="label-text">Chapter IV · Bringing Fun Back Home</span>
+        <h2 class="section-heading" id="pledge-heading">A field guide to taking colour <em>less seriously</em></h2>
+      </div>
+
+      <div class="takeaway-grid">
+        <article class="takeaway-card">
+          <span class="label-text">Principle 01</span>
+          <h3 class="card-title">Start with low-stakes objects</h3>
+          <p style="margin-bottom: 0;">
+            You do not have to repaint your entire hallway tomorrow. Begin with a bright pink toaster, mismatched stripy mugs, or neon sticky notes that make your desk feel alive.
+          </p>
+        </article>
+        <article class="takeaway-card">
+          <span class="label-text">Principle 02</span>
+          <h3 class="card-title">Stop decorating for future strangers</h3>
+          <p style="margin-bottom: 0;">
+            Resale neutrality turns homes into waiting rooms. Let your space reflect who actually wakes up there—not an imaginary buyer five years from now.
+          </p>
+        </article>
+        <article class="takeaway-card">
+          <span class="label-text">Principle 03</span>
+          <h3 class="card-title">Appreciation meets celebration</h3>
+          <p style="margin-bottom: 0;">
+            Simplicity and colour are not enemies. You can appreciate clean lines while still celebrating joyful, unapologetic pink and rainbow moments.
+          </p>
+        </article>
+      </div>
+
+      <div class="pledge-panel">
+        <form onsubmit="addColourPledge(event)">
+          <span class="label-text">Interactive Diary Log</span>
+          <h3 class="card-title" style="margin-top: var(--space-xs);">Add a small joy swap to your diary</h3>
+          <p class="muted">
+            Record one muted habit you are ready to swap for something playful. Your entries stay saved in this diary.
+          </p>
+
+          <div class="field-stack">
+            <label for="pledge-category">Area of Life</label>
+            <select id="pledge-category" class="sticker-select">
+              <option value="Home &amp; Interiors">Home &amp; Interiors</option>
+              <option value="Wardrobe &amp; Shoes">Wardrobe &amp; Shoes</option>
+              <option value="Kitchen &amp; Treats">Kitchen &amp; Treats</option>
+              <option value="Creative Play">Creative Play</option>
+            </select>
+          </div>
+
+          <div class="field-stack">
+            <label for="pledge-input">Your Colour Swap</label>
+            <input type="text" id="pledge-input" class="sticker-input" maxlength="120" placeholder="e.g. Swap my grey umbrella for a rainbow one">
+          </div>
+
+          <div style="display: flex; align-items: center; gap: var(--space-md); flex-wrap: wrap;">
+            <button type="submit" class="btn btn-primary">Save Diary Note</button>
+            <span class="status-banner" id="pledge-feedback" aria-live="polite"></span>
+          </div>
+        </form>
+
+        <div>
+          <div style="display: flex; justify-content: space-between; align-items: center; gap: var(--space-sm); margin-bottom: var(--space-md);">
+            <span class="label-text">Your Saved Diary Notes (<span id="pledge-count">0</span>)</span>
+          </div>
+          <div class="pledge-list" id="pledge-list"></div>
+        </div>
+      </div>
+    </section>
+
+    <footer class="diary-footer">
+      <div>
+        <span class="label-text">Visual Diary Edition · United Kingdom</span>
+        <p style="margin: var(--space-xs) 0 0 0; font-weight: 700;">
+          “growing up taught us to appreciate simplicity. childhood taught us to celebrate colour.”
+        </p>
+      </div>
+      <div class="action-cluster">
+        <button type="button" class="btn btn-secondary btn-sm" onclick="scrollToTop()">Back to Top</button>
+      </div>
+    </footer>
+
+  </main>
+
+  <api-shim></api-shim>
+
+  <script>
+    // --- Source-grounded state ---
+    const PLATES_DATA = {
+      'finger-paint': {
+        joyTag: `01 · Finger Painting`,
+        joyTitle: `Hands first, tidy later`,
+        joyDesc: `At five years old, nobody asks whether cadmium yellow clashes with magenta. You dip both palms straight into the tray because watching two bright colours collide on sugar paper is pure magic.`,
+        minTag: `01 · Minimalist Edit`,
+        minTitle: `Textural Study in Warm Stone`,
+        minDesc: `“Curated organic gesture on unbleached cotton rag. Keeps the playroom cohesive and strictly neutral.”`
+      },
+      'rainbow-treats': {
+        joyTag: `02 · Rainbow Treats`,
+        joyTitle: `Sweetness in six stripes`,
+        joyDesc: `Birthday cake used to look like a pocket firework — hundreds-and-thousands, neon icing, and ice lollies that stained your tongue electric blue for an afternoon.`,
+        minTag: `02 · Minimalist Edit`,
+        minTitle: `Deconstructed Oat Biscuit`,
+        minDesc: `“Unfrosted, unbleached, and tastefully monochrome so it never steals focus from the linen tablecloth.”`
+      },
+      'bright-fashion': {
+        joyTag: `03 · Bright Fashion`,
+        joyTitle: `Dressing for delight`,
+        joyDesc: `Before “capsule wardrobes” persuaded us to dress in five shades of oat, getting dressed meant pairing a tangerine jumper with cobalt boots purely because both made you grin.`,
+        minTag: `03 · Minimalist Edit`,
+        minTitle: `Elevated Capsule Uniform`,
+        minDesc: `“Effortless charcoal knitwear paired with taupe trousers — designed to blend seamlessly into any lift.”`
+      },
+      'colourful-interiors': {
+        joyTag: `04 · Colourful Interiors`,
+        joyTitle: `Rooms that hug back`,
+        joyDesc: `Estate agents warn us to paint every wall “alabaster” for an imaginary future buyer. Yet stepping into a room with a bubblegum sofa and a mint lampshade instantly lowers your shoulders.`,
+        minTag: `04 · Minimalist Edit`,
+        minTitle: `Serene Greige Sanctuary`,
+        minDesc: `“Plaster-toned walls and putty upholstery keep the room timeless, quiet, and reassuringly saleable.”`
+      },
+      'child-art': {
+        joyTag: `05 · Child Art`,
+        joyTitle: `Before anyone graded the lines`,
+        joyDesc: `Notice how children draw houses purple, skies emerald, and suns with smiling faces. Nobody told them colour had to be justified by a moodboard — it was simply there to be enjoyed.`,
+        minTag: `05 · Minimalist Edit`,
+        minTitle: `Framed Charcoal Sketch`,
+        minDesc: `“Filed neatly inside a cupboard so the fridge door remains clean, uninterrupted brushed steel.”`
+      }
+    };
+
+    const LIFE_STAGES = [
+      { max: 24, label: `Age 6 · Unfiltered Joy`, caption: `Every crayon stays in the box. Pink sofas, rainbow sprinkles, and mismatched socks need no justification.` },
+      { max: 54, label: `Age 17 · Learning the Rules`, caption: `Magazines start whispering that black looks “grown-up” and loud stripes look messy.` },
+      { max: 82, label: `Age 26 · The Magnolia Flat`, caption: `Everything turns oatmeal, charcoal, and sage. Anyone who buys a yellow chair gets told they are “so brave”.` },
+      { max: 100, label: `Age 32 · Peak Minimalism`, caption: `Zero visual friction — yet somehow the room feels like a dentist’s waiting area. Slide back left to bring the fun home.` }
+    ];
+
+    const CHROMA_METRICS = [
+      { space: `Playroom & Art`, child: 96, adult: 34 },
+      { space: `Everyday Wardrobe`, child: 88, adult: 26 },
+      { space: `Living Room Sofa`, child: 84, adult: 22 },
+      { space: `Kitchen & Tableware`, child: 91, adult: 31 },
+      { space: `Celebration Cakes`, child: 98, adult: 42 }
+    ];
+
+    let appState = {
+      lifeStage: 0,
+      plateModes: {
+        'finger-paint': 'joy',
+        'rainbow-treats': 'joy',
+        'bright-fashion': 'joy',
+        'colourful-interiors': 'joy',
+        'child-art': 'joy'
+      },
+      chartView: 'compare',
+      studioTool: 'paint',
+      paintToken: '--primary',
+      stickerShape: 'rainbow',
+      brushSize: 24,
+      canvasOps: [],
+      pledges: []
+    };
+
+    let isDrawing = false;
+    let activeStroke = null;
+    let cachedTokenValues = {};
+
+    function getCssToken(tokenName) {
+      if (cachedTokenValues[tokenName]) return cachedTokenValues[tokenName];
+      const val = getComputedStyle(document.documentElement).getPropertyValue(tokenName).trim();
+      cachedTokenValues[tokenName] = val || '#c2207f';
+      return cachedTokenValues[tokenName];
+    }
+
+    // --- State Persistence Helpers ---
+    async function persistState() {
+      if (window.notebookAppApi && typeof window.notebookAppApi.setAppState === 'function') {
+        try {
+          await window.notebookAppApi.setAppState({
+            lifeStage: appState.lifeStage,
+            plateModes: appState.plateModes,
+            chartView: appState.chartView,
+            canvasOps: appState.canvasOps.slice(-60),
+            pledges: appState.pledges.slice(0, 20)
+          });
+        } catch (err) {
+          // Graceful no-op outside sandbox host
+        }
+      }
+    }
+
+    // --- Hero Life-Stage Slider ---
+    function handleStageSlider(val) {
+      const numeric = Math.max(0, Math.min(100, Number(val) || 0));
+      appState.lifeStage = numeric;
+      applyStageVisuals(numeric);
+      persistState();
+    }
+
+    function applyStageVisuals(numeric) {
+      const frame = document.getElementById('hero-stage-frame');
+      const badge = document.getElementById('life-stage-badge');
+      const caption = document.getElementById('life-stage-caption');
+      const slider = document.getElementById('life-stage-slider');
+      if (slider && Number(slider.value) !== numeric) slider.value = numeric;
+
+      const stage = LIFE_STAGES.find((s) => numeric <= s.max) || LIFE_STAGES[LIFE_STAGES.length - 1];
+      if (badge) badge.textContent = stage.label;
+      if (caption) caption.textContent = stage.caption;
+
+      if (frame) {
+        const sat = (1 - (numeric / 100) * 0.92).toFixed(2);
+        frame.style.filter = `saturate(${sat})`;
+      }
+    }
+
+    // --- Five Plates Interactive Toggle ---
+    function togglePlate(plateId) {
+      const current = appState.plateModes[plateId] || 'joy';
+      appState.plateModes[plateId] = current === 'joy' ? 'minimalist' : 'joy';
+      renderPlate(plateId);
+      syncGlobalPlateButtons();
+      persistState();
+    }
+
+    function setAllPlatesMode(mode) {
+      Object.keys(appState.plateModes).forEach((key) => {
+        appState.plateModes[key] = mode;
+        renderPlate(key);
+      });
+      syncGlobalPlateButtons();
+      persistState();
+    }
+
+    function syncGlobalPlateButtons() {
+      const modes = Object.values(appState.plateModes);
+      const allJoy = modes.every((m) => m === 'joy');
+      const allMin = modes.every((m) => m === 'minimalist');
+      const btnJoy = document.getElementById('btn-all-joy');
+      const btnMin = document.getElementById('btn-all-minimal');
+      if (btnJoy) btnJoy.setAttribute('aria-pressed', allJoy ? 'true' : 'false');
+      if (btnMin) btnMin.setAttribute('aria-pressed', allMin ? 'true' : 'false');
+    }
+
+    function renderPlate(plateId) {
+      const mode = appState.plateModes[plateId] || 'joy';
+      const data = PLATES_DATA[plateId];
+      if (!data) return;
+
+      const card = document.getElementById(`plate-${plateId}`);
+      const tag = document.getElementById(`tag-${plateId}`);
+      const title = document.getElementById(`title-${plateId}`);
+      const desc = document.getElementById(`desc-${plateId}`);
+      const btn = document.getElementById(`toggle-${plateId}`);
+
+      const isMin = mode === 'minimalist';
+      if (card) card.classList.toggle('is-minimalist', isMin);
+      if (tag) tag.textContent = isMin ? data.minTag : data.joyTag;
+      if (title) title.textContent = isMin ? data.minTitle : data.joyTitle;
+      if (desc) desc.textContent = isMin ? data.minDesc : data.joyDesc;
+      if (btn) {
+        btn.textContent = isMin ? `Restore Childhood Colour` : `Preview Adult Minimalist Edit`;
+      }
+    }
+
+    // --- Lollipop Chroma Chart ---
+    function setChartView(view) {
+      appState.chartView = view;
+      const btnComp = document.getElementById('chart-btn-compare');
+      const btnGap = document.getElementById('chart-btn-gap');
+      if (btnComp) btnComp.setAttribute('aria-pressed', view === 'compare' ? 'true' : 'false');
+      if (btnGap) btnGap.setAttribute('aria-pressed', view === 'gap' ? 'true' : 'false');
+      renderChromaChart();
+      persistState();
+    }
+
+    function renderChromaChart() {
+      const svg = document.getElementById('chroma-lollipop-svg');
+      if (!svg) return;
+
+      const rowHeight = 52;
+      const startY = 38;
+      const leftX = 148;
+      const maxBarWidth = 310;
+      const isGap = appState.chartView === 'gap';
+
+      let html = '';
+      // Subtle gridlines
+      [0, 25, 50, 75, 100].forEach((tick) => {
+        const x = leftX + (tick / 100) * maxBarWidth;
+        html += `<line x1="${x}" y1="18" x2="${x}" y2="278" stroke="var(--outline-variant)" stroke-dasharray="4 4" stroke-width="1" />`;
+        html += `<text x="${x}" y="298" text-anchor="middle" fill="var(--on-surface-variant)" font-size="11" font-weight="600" font-family="var(--font-label)">${tick}</text>`;
+      });
+
+      CHROMA_METRICS.forEach((item, idx) => {
+        const y = startY + idx * rowHeight;
+        const xAdult = leftX + (item.adult / 100) * maxBarWidth;
+        const xChild = leftX + (item.child / 100) * maxBarWidth;
+        const gapVal = item.child - item.adult;
+
+        html += `<text x="${leftX - 12}" y="${y + 4}" text-anchor="end" fill="var(--on-surface)" font-size="12.5" font-weight="700" font-family="var(--font-body)">${item.space}</text>`;
+
+        if (isGap) {
+          html += `<line x1="${xAdult}" y1="${y}" x2="${xChild}" y2="${y}" stroke="var(--primary)" stroke-width="8" stroke-linecap="round" />`;
+          html += `<circle cx="${xAdult}" cy="${y}" r="7" fill="var(--greige-muted)" />`;
+          html += `<circle cx="${xChild}" cy="${y}" r="9" fill="var(--primary)" />`;
+          html += `<text x="${xChild + 14}" y="${y + 4}" fill="var(--primary)" font-size="12" font-weight="800" font-family="var(--font-label)">−${gapVal} pts</text>`;
+        } else {
+          // Adult muted pill stem
+          html += `<line x1="${leftX}" y1="${y + 8}" x2="${xAdult}" y2="${y + 8}" stroke="var(--data-context)" stroke-width="6" stroke-linecap="round" />`;
+          html += `<circle cx="${xAdult}" cy="${y + 8}" r="7" fill="var(--greige-muted)" />`;
+          html += `<text x="${xAdult + 12}" y="${y + 12}" fill="var(--on-surface-variant)" font-size="11" font-weight="700" font-family="var(--font-label)">Adult ${item.adult}</text>`;
+
+          // Childhood vibrant lollipop stem
+          html += `<line x1="${leftX}" y1="${y - 8}" x2="${xChild}" y2="${y - 8}" stroke="var(--data-1)" stroke-width="7" stroke-linecap="round" />`;
+          html += `<circle cx="${xChild}" cy="${y - 8}" r="8.5" fill="var(--data-1)" />`;
+          html += `<text x="${xChild + 13}" y="${y - 4}" fill="var(--primary)" font-size="11.5" font-weight="800" font-family="var(--font-label)">Child ${item.child}</text>`;
+        }
+      });
+
+      svg.innerHTML = html;
+    }
+
+    // --- Interactive Finger-Paint & Sticker Studio ---
+    function setStudioTool(tool) {
+      appState.studioTool = tool;
+      const paintBtn = document.getElementById('tool-paint');
+      const stickerBtn = document.getElementById('tool-sticker');
+      const status = document.getElementById('studio-status');
+      if (paintBtn) paintBtn.setAttribute('aria-pressed', tool === 'paint' ? 'true' : 'false');
+      if (stickerBtn) stickerBtn.setAttribute('aria-pressed', tool === 'sticker' ? 'true' : 'false');
+      if (status) {
+        status.textContent = tool === 'paint'
+          ? `Finger-paint mode active: drag freely across the page.`
+          : `Sticker mode active: tap or click anywhere to stamp a sticker.`;
+      }
+    }
+
+    function selectPaintColour(token, btn) {
+      appState.paintToken = token;
+      document.querySelectorAll('.paint-swatch').forEach((el) => el.setAttribute('aria-pressed', 'false'));
+      if (btn) btn.setAttribute('aria-pressed', 'true');
+    }
+
+    function selectStickerShape(shape, btn) {
+      appState.stickerShape = shape;
+      document.querySelectorAll('.sticker-choice').forEach((el) => el.setAttribute('aria-pressed', 'false'));
+      if (btn) btn.setAttribute('aria-pressed', 'true');
+      setStudioTool('sticker');
+    }
+
+    function setBrushSize(val) {
+      appState.brushSize = Number(val) || 24;
+      const readout = document.getElementById('brush-size-readout');
+      if (readout) readout.textContent = `${appState.brushSize} px`;
+    }
+
+    function getCanvasPoint(evt, canvas) {
+      const rect = canvas.getBoundingClientRect();
+      const scaleX = canvas.width / rect.width;
+      const scaleY = canvas.height / rect.height;
+      return {
+        x: Math.round((evt.clientX - rect.left) * scaleX),
+        y: Math.round((evt.clientY - rect.top) * scaleY)
+      };
+    }
+
+    function drawStickerOnCtx(ctx, op) {
+      const color = getCssToken(op.token);
+      const size = op.size || 26;
+      ctx.save();
+      ctx.translate(op.x, op.y);
+
+      if (op.shape === 'rainbow') {
+        const colors = ['--rainbow-pink', '--rainbow-orange', '--rainbow-yellow', '--rainbow-mint', '--rainbow-sky'];
+        colors.forEach((tok, i) => {
+          ctx.beginPath();
+          ctx.arc(0, size * 0.4, Math.max(4, size * 1.1 - i * (size * 0.17)), Math.PI, 0);
+          ctx.strokeStyle = getCssToken(tok);
+          ctx.lineWidth = Math.max(3, size * 0.16);
+          ctx.lineCap = 'round';
+          ctx.stroke();
+        });
+      } else if (op.shape === 'star') {
+        ctx.beginPath();
+        for (let i = 0; i < 10; i++) {
+          const r = i % 2 === 0 ? size : size * 0.46;
+          const angle = (Math.PI / 5) * i - Math.PI / 2;
+          const px = Math.cos(angle) * r;
+          const py = Math.sin(angle) * r;
+          if (i === 0) ctx.moveTo(px, py);
+          else ctx.lineTo(px, py);
+        }
+        ctx.closePath();
+        ctx.fillStyle = color;
+        ctx.fill();
+      } else if (op.shape === 'heart') {
+        const s = size * 0.9;
+        ctx.beginPath();
+        ctx.moveTo(0, s * 0.35);
+        ctx.bezierCurveTo(-s, -s * 0.4, -s * 0.4, -s * 1.05, 0, -s * 0.35);
+        ctx.bezierCurveTo(s * 0.4, -s * 1.05, s, -s * 0.4, 0, s * 0.35);
+        ctx.fillStyle = color;
+        ctx.fill();
+      } else if (op.shape === 'flower') {
+        for (let i = 0; i < 6; i++) {
+          const a = (Math.PI / 3) * i;
+          ctx.beginPath();
+          ctx.arc(Math.cos(a) * size * 0.55, Math.sin(a) * size * 0.55, size * 0.38, 0, Math.PI * 2);
+          ctx.fillStyle = color;
+          ctx.fill();
+        }
+        ctx.beginPath();
+        ctx.arc(0, 0, size * 0.34, 0, Math.PI * 2);
+        ctx.fillStyle = getCssToken('--rainbow-yellow');
+        ctx.fill();
+      } else if (op.shape === 'sun') {
+        ctx.fillStyle = getCssToken('--rainbow-yellow');
+        ctx.beginPath();
+        ctx.arc(0, 0, size * 0.58, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.strokeStyle = getCssToken('--rainbow-orange');
+        ctx.lineWidth = Math.max(3, size * 0.14);
+        ctx.lineCap = 'round';
+        for (let i = 0; i < 8; i++) {
+          const a = (Math.PI / 4) * i;
+          ctx.beginPath();
+          ctx.moveTo(Math.cos(a) * size * 0.72, Math.sin(a) * size * 0.72);
+          ctx.lineTo(Math.cos(a) * size * 1.05, Math.sin(a) * size * 1.05);
+          ctx.stroke();
+        }
+      } else {
+        // Splash
+        ctx.fillStyle = color;
+        ctx.beginPath();
+        ctx.arc(0, 0, size * 0.65, 0, Math.PI * 2);
+        ctx.fill();
+        const dots = [[-0.85, -0.5, 0.25], [0.9, -0.4, 0.22], [0.6, 0.85, 0.28], [-0.7, 0.75, 0.2]];
+        dots.forEach(([dx, dy, dr]) => {
+          ctx.beginPath();
+          ctx.arc(dx * size, dy * size, size * dr, 0, Math.PI * 2);
+          ctx.fill();
+        });
+      }
+
+      ctx.restore();
+    }
+
+    function renderCanvas() {
+      const canvas = document.getElementById('finger-paint-canvas');
+      if (!canvas) return;
+      const ctx = canvas.getContext('2d');
+      if (!ctx) return;
+
+      ctx.fillStyle = getCssToken('--surface-container-low');
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+      // Faint guiding paper dots if empty
+      if (appState.canvasOps.length === 0) {
+        ctx.fillStyle = getCssToken('--on-surface-variant');
+        ctx.font = '600 18px DM Sans, sans-serif';
+        ctx.textAlign = 'center';
+        ctx.fillText(`Paint freely or stamp stickers — no rules, just colour.`, canvas.width / 2, canvas.height / 2);
+      }
+
+      appState.canvasOps.forEach((op) => {
+        if (op.type === 'stroke' && op.points && op.points.length > 0) {
+          ctx.save();
+          ctx.strokeStyle = getCssToken(op.token);
+          ctx.fillStyle = getCssToken(op.token);
+          ctx.lineWidth = op.size;
+          ctx.lineCap = 'round';
+          ctx.lineJoin = 'round';
+          if (op.points.length === 1) {
+            ctx.beginPath();
+            ctx.arc(op.points[0].x, op.points[0].y, op.size / 2, 0, Math.PI * 2);
+            ctx.fill();
+          } else {
+            ctx.beginPath();
+            ctx.moveTo(op.points[0].x, op.points[0].y);
+            for (let i = 1; i < op.points.length; i++) {
+              ctx.lineTo(op.points[i].x, op.points[i].y);
+            }
+            ctx.stroke();
+          }
+          ctx.restore();
+        } else if (op.type === 'sticker') {
+          drawStickerOnCtx(ctx, op);
+        }
+      });
+    }
+
+    function setupCanvasEvents() {
+      const canvas = document.getElementById('finger-paint-canvas');
+      if (!canvas) return;
+
+      canvas.addEventListener('pointerdown', (e) => {
+        const pt = getCanvasPoint(e, canvas);
+        if (appState.studioTool === 'sticker') {
+          appState.canvasOps.push({
+            type: 'sticker',
+            shape: appState.stickerShape,
+            token: appState.paintToken,
+            size: Math.max(20, appState.brushSize + 8),
+            x: pt.x,
+            y: pt.y
+          });
+          renderCanvas();
+          persistState();
+          return;
+        }
+        isDrawing = true;
+        canvas.setPointerCapture(e.pointerId);
+        activeStroke = {
+          type: 'stroke',
+          token: appState.paintToken,
+          size: appState.brushSize,
+          points: [pt]
+        };
+        appState.canvasOps.push(activeStroke);
+        renderCanvas();
+      });
+
+      canvas.addEventListener('pointermove', (e) => {
+        if (!isDrawing || !activeStroke) return;
+        const pt = getCanvasPoint(e, canvas);
+        const last = activeStroke.points[activeStroke.points.length - 1];
+        if (!last || Math.hypot(pt.x - last.x, pt.y - last.y) >= 4) {
+          activeStroke.points.push(pt);
+          renderCanvas();
+        }
+      });
+
+      function endStroke() {
+        if (!isDrawing) return;
+        isDrawing = false;
+        activeStroke = null;
+        persistState();
+      }
+      canvas.addEventListener('pointerup', endStroke);
+      canvas.addEventListener('pointercancel', endStroke);
+    }
+
+    function undoCanvas() {
+      if (appState.canvasOps.length === 0) return;
+      appState.canvasOps.pop();
+      renderCanvas();
+      persistState();
+    }
+
+    function clearCanvas(btn) {
+      if (appState.canvasOps.length === 0) return;
+      if (btn && btn.dataset.armed !== 'true') {
+        btn.dataset.armed = 'true';
+        btn.textContent = `Tap Again to Clear`;
+        setTimeout(() => {
+          if (btn.dataset.armed === 'true') {
+            btn.dataset.armed = 'false';
+            btn.textContent = `Clear Page`;
+          }
+        }, 3000);
+        return;
+      }
+      if (btn) {
+        btn.dataset.armed = 'false';
+        btn.textContent = `Clear Page`;
+      }
+      appState.canvasOps = [];
+      renderCanvas();
+      persistState();
+    }
+
+    function downloadDiaryPostcard() {
+      const canvas = document.getElementById('finger-paint-canvas');
+      const status = document.getElementById('studio-status');
+      if (!canvas) return;
+      const dataUrl = canvas.toDataURL('image/png');
+      if (!dataUrl || typeof dataUrl !== 'string' || !dataUrl.includes(',')) {
+        if (status) status.textContent = `Could not generate postcard image.`;
+        return;
+      }
+      const parts = dataUrl.split(',');
+      const base64 = parts[1] || '';
+      if (window.notebookAppApi && typeof window.notebookAppApi.triggerFileDownload === 'function') {
+        window.notebookAppApi.triggerFileDownload({
+          content: base64,
+          contentType: 'image/png',
+          encoding: 'base64',
+          filename: 'visual-colour-diary-postcard.png'
+        });
+        if (status) status.textContent = `Postcard downloaded!`;
+      } else {
+        const link = document.createElement('a');
+        link.href = dataUrl;
+        link.download = 'visual-colour-diary-postcard.png';
+        link.click();
+        if (status) status.textContent = `Postcard saved as PNG.`;
+      }
+    }
+
+    // --- Colour Pledge Log ---
+    function addColourPledge(event) {
+      event.preventDefault();
+      const catEl = document.getElementById('pledge-category');
+      const inputEl = document.getElementById('pledge-input');
+      const feedbackEl = document.getElementById('pledge-feedback');
+      if (!inputEl || !catEl) return;
+
+      const text = inputEl.value.trim();
+      if (text.length < 4) {
+        if (feedbackEl) feedbackEl.textContent = `Write a short note (at least 4 characters).`;
+        return;
+      }
+
+      appState.pledges.unshift({
+        id: Date.now(),
+        category: catEl.value,
+        text
+      });
+      inputEl.value = '';
+      if (feedbackEl) feedbackEl.textContent = `Saved to your visual diary.`;
+      renderPledges();
+      persistState();
+    }
+
+    function removePledge(id) {
+      appState.pledges = appState.pledges.filter((p) => p.id !== id);
+      renderPledges();
+      persistState();
+    }
+
+    function renderPledges() {
+      const listEl = document.getElementById('pledge-list');
+      const countEl = document.getElementById('pledge-count');
+      if (!listEl) return;
+      if (countEl) countEl.textContent = String(appState.pledges.length);
+
+      if (appState.pledges.length === 0) {
+        listEl.innerHTML = `<div class="pledge-empty">No diary notes yet. Add one small, joyful colour swap on the left — like wearing bright trainers on a grey Tuesday.</div>`;
+        return;
+      }
+
+      listEl.innerHTML = appState.pledges.map((item) => `
+        <div class="pledge-item">
+          <div class="pledge-text-wrap">
+            <span class="label-text">${escapeHtml(item.category)}</span>
+            <strong>${escapeHtml(item.text)}</strong>
+          </div>
+          <button type="button" class="btn btn-ghost btn-sm" onclick="removePledge(${item.id})">Remove</button>
+        </div>
+      `).join('');
+    }
+
+    function escapeHtml(str) {
+      return String(str)
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#39;');
+    }
+
+    function scrollToTop() {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    // --- Scroll Reveals (One-shot IntersectionObserver) ---
+    function setupRevealObserver() {
+      const els = document.querySelectorAll('.reveal-item');
+      if (!('IntersectionObserver' in window)) {
+        els.forEach((el) => el.classList.add('is-visible'));
+        return;
+      }
+      const io = new IntersectionObserver((entries, obs) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) return;
+          entry.target.classList.add('is-visible');
+          obs.unobserve(entry.target);
+        });
+      }, { threshold: 0.1 });
+      els.forEach((el) => io.observe(el));
+    }
+
+    // --- Initialisation ---
+    async function initApp() {
+      if (window.notebookAppApi && typeof window.notebookAppApi.getAppState === 'function') {
+        try {
+          const saved = await window.notebookAppApi.getAppState();
+          if (saved && typeof saved === 'object') {
+            if (typeof saved.lifeStage === 'number') appState.lifeStage = saved.lifeStage;
+            if (saved.plateModes && typeof saved.plateModes === 'object') {
+              appState.plateModes = Object.assign({}, appState.plateModes, saved.plateModes);
+            }
+            if (saved.chartView === 'compare' || saved.chartView === 'gap') {
+              appState.chartView = saved.chartView;
+            }
+            if (Array.isArray(saved.canvasOps)) appState.canvasOps = saved.canvasOps;
+            if (Array.isArray(saved.pledges)) appState.pledges = saved.pledges;
+          }
+        } catch (err) {
+          // Proceed with defaults
+        }
+      }
+
+      applyStageVisuals(appState.lifeStage);
+      Object.keys(appState.plateModes).forEach(renderPlate);
+      syncGlobalPlateButtons();
+      setChartView(appState.chartView);
+      setupCanvasEvents();
+      renderCanvas();
+      renderPledges();
+      setupRevealObserver();
+
+      if (window.notebookAppApi && typeof window.notebookAppApi.notifyAppReady === 'function') {
+        window.notebookAppApi.notifyAppReady();
+      }
+    }
+
+    document.addEventListener('DOMContentLoaded', initApp);
+  </script>
+</body>
+</html>
